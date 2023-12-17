@@ -18,7 +18,13 @@
       display: inline-block;
     }
     button {
-      margin-left: 10px;
+      margin-right: 20px;
+      border: none;
+      padding: 5px 10px;
+      background-color: #626FFF;
+      color: #FFFFFF;
+      font-size: 24px;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -29,15 +35,8 @@
     </div>
     <p id="clickCount">0</p>
     
-    <button id="decrementClick">-</button>
-    <button id="incrementClick">+</button>
-  </div>
-
-  <div class="counter" id="windowChangeCounter">
-    <p>All calls</p>
-    <p id="windowChangeCount">0</p>
-    <button id="decrementWindowChange" style="display:none;">-</button>
-    <button id="incrementWindowChange" style="display:none;">+</button>
+    <button id="decrementClick">&nbsp;-&nbsp;</button>
+    <button id="incrementClick">&nbsp;+&nbsp;</button>
   </div>
 
   <button id="resetValues">Reset</button>
@@ -51,7 +50,6 @@
     // Function to load counts from local storage
     function loadCounts() {
       clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
-
       clickCountElement.textContent = clickCount;
     }
 
@@ -91,13 +89,20 @@
         // Update UI
         clickCountElement.textContent = clickCount;
 
-        // Reset local storage value
+        // Reset local storage values
         saveCounts();
       }
     });
 
     // Load counts on page load
     loadCounts();
+
+    // Increment click count when the window gains focus
+    window.addEventListener('focus', () => {
+      clickCount++;
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
   </script>
 </body>
 </html>
