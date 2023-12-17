@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Rurendra Tegor" />
+  <title>Click Counter - Rurendra Tegor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0px;
+      margin: 0px;
+      text-align: left;
+    }
+    .counter {
+      font-size: 24px;
+      padding-left: 20px;
+      display: inline-block;
+    }
+    button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="counter" id="clickCounter">
+    <div id="clickableArea">
+      Connected calls
+    </div>
+    <p id="clickCount">0</p>
+    
+    <button id="decrementClick">-</button>
+    <button id="incrementClick">+</button>
+  </div>
+
+  <div class="counter" id="windowChangeCounter">
+    <p>All calls</p>
+    <p id="windowChangeCount">0</p>
+    <button id="decrementWindowChange" style="display:none;">-</button>
+    <button id="incrementWindowChange" style="display:none;">+</button>
+  </div>
+
+  <button id="resetValues">Reset</button>
+
+  <script>
+    // Function to save counts in local storage
+    function saveCounts() {
+      localStorage.setItem('clickCount', clickCount);
+    }
+
+    // Function to load counts from local storage
+    function loadCounts() {
+      clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
+
+      clickCountElement.textContent = clickCount;
+    }
+
+    // Click Counter
+    let clickCount = 0;
+    const clickCountElement = document.getElementById('clickCount');
+    const clickableArea = document.getElementById('clickableArea');
+
+    clickableArea.addEventListener('click', () => {
+      clickCount++;
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
+
+    document.getElementById('decrementClick').addEventListener('click', () => {
+      clickCount = Math.max(0, clickCount - 1);
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
+
+    document.getElementById('incrementClick').addEventListener('click', () => {
+      clickCount++;
+      clickCountElement.textContent = clickCount;
+      saveCounts();
+    });
+
+    // Reset Button
+    const resetButton = document.getElementById('resetValues');
+
+    resetButton.addEventListener('click', () => {
+      const resetConfirmation = confirm('Are you sure you want to reset values?');
+
+      if (resetConfirmation) {
+        // Reset clickCount value
+        clickCount = 0;
+
+        // Update UI
+        clickCountElement.textContent = clickCount;
+
+        // Reset local storage value
+        saveCounts();
+      }
+    });
+
+    // Load counts on page load
+    loadCounts();
+  </script>
+</body>
+</html>
