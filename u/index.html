@@ -11,11 +11,25 @@
       padding: 0px;
       margin: 0px;
       text-align: left;
+      background-image: url('https://images.unsplash.com/photo-1682686580036-b5e25932ce9a?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .container{
+      margin: 10px;
+      border: 2px solid white;
+      padding: 10px;
+      border-radius: 20px;
+      
     }
     .counter {
       font-size: 24px;
-      padding-left: 20px;
+      padding: 10px;
       display: inline-block;
+      color: #FFFFFF;
+      
+      
     }
     button {
       margin-right: 20px;
@@ -26,27 +40,39 @@
       font-size: 24px;
       border-radius: 5px;
     }
+    #clickCount{
+      font-weight: 700;
+      font-size: 28px;
+    }
+    #windowChangeCount{
+      font-weight: 700;
+      font-size: 28px;
+    }
   </style>
 </head>
 <body>
-  <div class="counter" id="clickCounter">
-    <div id="clickableArea">
-      Completed calls
+
+
+<div class="container">
+    <div class="counter" id="clickCounter">
+      <div id="clickableArea">
+        Completed calls
+      </div>
+      <p id="clickCount">0</p>
+  
+      <button id="decrementClick">&nbsp;-&nbsp;</button>
+      <button id="incrementClick">&nbsp;+</button>
     </div>
-    <p id="clickCount">0</p>
-    
-    <button id="decrementClick">&nbsp;-&nbsp;</button>
-    <button id="incrementClick">&nbsp;+</button>
-  </div>
-
-  <div class="counter" id="windowChangeCounter">
-    <p>All calls</p>
-    <p id="windowChangeCount">0</p>
-    <button id="decrementWindowChange">&nbsp;-&nbsp;</button>
-    <button style="display: none;" id="incrementWindowChange">&nbsp;+&nbsp;</button>
-  </div>
-
-  <button id="resetValues">Reset</button>
+  
+    <div class="counter" id="windowChangeCounter">
+      <p>All calls</p>
+      <p id="windowChangeCount">0</p>
+      <button id="decrementWindowChange">&nbsp;-&nbsp;</button>
+      <button style="display: none;" id="incrementWindowChange">&nbsp;+&nbsp;</button>
+    </div>
+  
+    <button id="resetValues">Reset</button>
+</div>
 
   <script>
     // Function to save counts in local storage
