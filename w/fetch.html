@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="displayLocation()">
+
+<p id="locationInfo"></p>
+
+<script>
+    // Initialize Firebase with your credentials
+    const firebaseConfig = {
+        apiKey: "AIzaSyBIMU1mbGehF2Y3cOvSAp51nUjIc9XRT7M",
+        authDomain: "profilewings.firebaseapp.com",
+        projectId: "profilewings",
+        storageBucket: "profilewings.appspot.com",
+        messagingSenderId: "737949367885",
+        appId: "1:737949367885:web:a67c7ba0c7cdc2181ea604",
+        measurementId: "G-S1HJQY3HS6"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+
+    function displayLocation() {
+        const locationInfo = document.getElementById('locationInfo');
+
+        // Assuming you have a collection named 'locations' in Firestore
+        db.collection('locations').get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const latitude = doc.data().latitude;
+                    const longitude = doc.data().longitude;
+
+                    // Display latitude and longitude in the <p> tag
+                    locationInfo.innerHTML += `Latitude: ${latitude}, Longitude: ${longitude}<br>`;
+                });
+            })
+            .catch((error) => {
+                console.error('Error getting documents: ', error);
+            });
+    }
+</script>
+
+</body>
+</html>

