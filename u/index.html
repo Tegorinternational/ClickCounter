@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,23 +18,26 @@
       background-position: center;
       padding: 10px 0;
     }
-    .container{
+
+    .container {
       margin: 10px;
       border: 1px solid white;
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(3px);
       background-color: #00000017;
-      
+
     }
+
     .counter {
       font-size: 24px;
       padding: 10px;
       display: inline-block;
       color: #FFFFFF;
-      
-      
+
+
     }
+
     button {
       margin-right: 20px;
       border: none;
@@ -43,39 +47,41 @@
       font-size: 24px;
       border-radius: 5px;
     }
-    #clickCount{
+
+    #clickCount {
       font-weight: 700;
       font-size: 28px;
     }
-    #windowChangeCount{
+
+    #windowChangeCount {
       font-weight: 700;
       font-size: 28px;
     }
   </style>
 </head>
+
 <body>
 
-
-<div class="container">
+  <div class="container">
     <div class="counter" id="clickCounter">
       <div id="clickableArea">
         Complete calls
       </div>
       <p id="clickCount">0</p>
-  
+
       <button id="decrementClick">&nbsp;-&nbsp;</button>
       <button id="incrementClick">&nbsp;+</button>
     </div>
-  
+
     <div class="counter" id="windowChangeCounter">
       <p>All calls</p>
       <p id="windowChangeCount">0</p>
       <button id="decrementWindowChange">&nbsp;-&nbsp;</button>
       <button style="display: none;" id="incrementWindowChange">&nbsp;+&nbsp;</button>
     </div>
-  
+
     <button id="resetValues">Reset</button>
-</div>
+  </div>
 
   <script>
     // Function to save counts in local storage
@@ -93,6 +99,12 @@
       windowChangeCountElement.textContent = windowChangeCount;
     }
 
+    // Function to play music
+    function playMusic(audioSource) {
+      const audio = new Audio(audioSource);
+      audio.play();
+    }
+
     // Click Counter
     let clickCount = 0;
     const clickCountElement = document.getElementById('clickCount');
@@ -102,7 +114,7 @@
       clickCount++;
       clickCountElement.textContent = clickCount;
       saveCounts();
-      
+      playMusic('url_to_increment_music.mp3'); // Replace 'url_to_increment_music.mp3' with the actual path to your increment music
     });
 
     document.getElementById('decrementClick').addEventListener('click', () => {
@@ -115,6 +127,7 @@
       clickCount++;
       clickCountElement.textContent = clickCount;
       saveCounts();
+      playMusic('/u/complete.mp3'); // Replace 'url_to_increment_music.mp3' with the actual path to your increment music
     });
 
     // Window Change Counter
@@ -125,6 +138,7 @@
       windowChangeCount++;
       windowChangeCountElement.textContent = windowChangeCount;
       saveCounts();
+      playMusic('/u/mouse-click.mp3'); // Replace 'url_to_focus_music.mp3' with the actual path to your focus music
     }
 
     document.addEventListener('visibilitychange', () => {
@@ -172,4 +186,5 @@
     });
   </script>
 </body>
+
 </html>
