@@ -69,6 +69,15 @@
       z-index: 20;
       padding: 5px 10px;
     }
+    .historyCont{
+      background-color: white;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 50;
+      width: 100%;
+      padding: 10px;
+    }
   </style>
 </head>
 
@@ -98,23 +107,96 @@
     <button id="resetValues">Reset</button>
   </div>
 
+  <!-- Add this div to display historical counts -->
+  <p style="color: gray; margin-left: 10px; margin-top: 100px;" onclick="seeHistory()">History <kbd>ctrl+alt+b</kbd></p>
+  <div class="historyCont" style="display: none;" id="historyContainer">
+    <button onclick="seeHistory()">History <kbd>ctrl+alt+b</kbd></button>
+    <h2>History</h2>
+    <div id="history"></div>
+    <button type="button" onclick="deleteHistory()">Clear history <kbd>ctrl+alt+a</kbd></button>
+  </div>
+
   <script>
-    // Function to save counts in local storage
+  
+  
+  function seeHistory() {
+    var myDiv = document.getElementById('historyContainer');
+    myDiv.style.display = (myDiv.style.display === 'none' || myDiv.style.display === '') ? 'block' : 'none';
+  }
+  
+    
+  
+    function deleteHistory(){
+      const resetConfirmation = confirm('Are you sure you want to Clear history ?');
+      
+      if (resetConfirmation) {
+        localStorage.removeItem('history');
+        location.reload();
+      }
+      else{
+        return false;
+      }
+    }
+    
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.altKey && event.key === 'a') {
+        deleteHistory();
+      }
+    });
+    
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.altKey && event.key === 'b') {
+        seeHistory()
+      }
+    });
+    
+    
+    // Function to save counts with date reference in local storage
     function saveCounts() {
+      const currentDate = new Date().toLocaleDateString();
+      const history = JSON.parse(localStorage.getItem('history')) || {};
+
+      if (!history[currentDate]) {
+        history[currentDate] = { clickCount: 0, windowChangeCount: 0 };
+      }
+
+      history[currentDate].clickCount = clickCount;
+      history[currentDate].windowChangeCount = windowChangeCount;
+
       localStorage.setItem('clickCount', clickCount);
       localStorage.setItem('windowChangeCount', windowChangeCount);
+      localStorage.setItem('history', JSON.stringify(history));
     }
 
-    // Function to load counts from local storage
+    // Function to load counts and history from local storage
     function loadCounts() {
       clickCount = parseInt(localStorage.getItem('clickCount')) || 0;
       windowChangeCount = parseInt(localStorage.getItem('windowChangeCount')) || 0;
 
       clickCountElement.textContent = clickCount;
       windowChangeCountElement.textContent = windowChangeCount;
+
+      displayHistory();
     }
 
-    // Function to play music
+    // Function to display historical counts
+    function displayHistory() {
+      const historyContainer = document.getElementById('history');
+      const history = JSON.parse(localStorage.getItem('history')) || {};
+
+      historyContainer.innerHTML = '';
+
+      for (const date in history) {
+        const counts = history[date];
+        const historyItem = document.createElement('div');
+        historyItem.innerHTML = `<p >${date}:<span style="color:green;">Complete Calls- ${counts.clickCount}</span>, Attempt calls- ${counts.windowChangeCount}</p>`;
+        historyContainer.appendChild(historyItem);
+      }
+    }
+
+    // ... rest of your existing code ...
+    
+        // Function to play music
     function playMusic(audioSource) {
       const audio = new Audio(audioSource);
       audio.play();
@@ -191,14 +273,22 @@
         saveCounts();
       }
     });
+    
+    
+
+    // Update historical counts when the window gains focus
+    window.addEventListener('focus', () => {
+      incrementWindowChangeCount();
+      displayHistory(); // Update historical counts on focus
+    });
 
     // Load counts on page load
     loadCounts();
-
-    // Increment counts when the window gains focus
-    window.addEventListener('focus', () => {
-      incrementWindowChangeCount();
-    });
+    
+    
+    
+    
+    
   </script>
 </body>
 
